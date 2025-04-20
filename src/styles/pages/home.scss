@@ -1,0 +1,13 @@
+@use '../basics/vars.scss' as *;
+
+.home {
+
+   color: $c4; // dark text for contrast
+
+   .image-gallery {
+      width: 100%;
+      height: 100%;
+   }
+
+
+}

@@ -1,0 +1,81 @@
+@use '../basics/vars.scss' as *;
+
+
+.carousel-slider {
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+   position: relative;
+   justify-content: space-between;
+}
+
+.carousel-slider img.round {
+   border-radius: 50%;
+   height: 100%;
+}
+
+.carousel-slider>button {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   z-index: 1;
+   cursor: pointer;
+}
+
+.carousel-slider>button svg path {
+   fill: $c1;
+}
+
+.carousel-slider>button:first-of-type {
+   left: 0;
+}
+
+.carousel-slider>button:last-of-type {
+   right: 0;
+}
+
+.carousel-slider .slides {
+   height: 100%;
+   position: relative;
+}
+
+.carousel-slider .slides.transition {
+   transition: 0.5s ease-in-out;
+}
+
+.carousel-slider .indicators {
+   flex-direction: row;
+   position: absolute;
+   bottom: 0;
+   left: 50%;
+   transform: translateX(-50%);
+   justify-content: center;
+   align-items: center;
+   gap: 1em;
+}
+
+.carousel-slider .indicator span {
+   display: block;
+   border: 2px solid $c1;
+   height: 1em;
+   width: 1em;
+   border-radius: 50%;
+}
+
+.carousel-slider .indicator.curr-indicator span {
+   background: $c1;
+}
+
+.carousel-slider .slide {
+   position: absolute;
+   overflow: hidden;
+   height: 100%;
+   width: 100%;
+}
+
+@media (max-width:600px) {
+   .carousel-slider .indicator span {
+      height: 0.7em;
+      width: 0.7em;
+   }
+}
