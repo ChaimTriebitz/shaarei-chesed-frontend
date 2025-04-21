@@ -2,6 +2,8 @@ import AboutMe from "@/components/AboutMe";
 import Hero from "@/components/Hero";
 import ProjectDifferentiator from "@/components/ProjectDifferentiator";
 import ImageGallery from "@/components/ImageGallery";
+import ProjectOverview from "@/components/ProjectOverview";
+import PaymentPlan from "@/components/PaymentPlan";
 import { ImageItem } from "@/types/images";
 
 const images: ImageItem[] = [
@@ -56,11 +58,11 @@ export default function Home() {
   return (
     <main className="home">
       <Hero images={images} />
-      <AboutMe />
+      <ProjectOverview />
       <ProjectDifferentiator />
-   
-        <ImageGallery images={images} />
-
+      <PaymentPlan />
+      <ImageGallery images={images} />
+      <AboutMe />
     </main>
   );
 }

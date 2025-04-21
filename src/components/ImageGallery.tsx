@@ -4,12 +4,12 @@ import { ImageItem } from "@/types/images";
 
 export default function ImageGallery({ images }: { images: ImageItem[] }) {
   return (
-    <section className="image-gallery" id="gallery">
+    <div className="image-gallery" id="gallery">
       <CarouselSlider>
         {images.map((image) => (
           <Image key={image.id} src={image.src} alt={image.alt} fill />
         ))}
       </CarouselSlider>
-    </section>
+    </div>
   );
 }

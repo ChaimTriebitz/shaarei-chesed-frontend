@@ -20,6 +20,9 @@
    transform: translateY(-50%);
    z-index: 1;
    cursor: pointer;
+   background: $c4;
+   border-radius: 50%;
+   border: 1px solid $c1;
 }
 
 .carousel-slider>button svg path {
@@ -27,11 +30,11 @@
 }
 
 .carousel-slider>button:first-of-type {
-   left: 0;
+   left: 1em;
 }
 
 .carousel-slider>button:last-of-type {
-   right: 0;
+   right: 1em;
 }
 
 .carousel-slider .slides {
@@ -46,12 +49,16 @@
 .carousel-slider .indicators {
    flex-direction: row;
    position: absolute;
-   bottom: 0;
+   bottom: 1em;
    left: 50%;
    transform: translateX(-50%);
    justify-content: center;
    align-items: center;
    gap: 1em;
+   .indicator{
+      background: $c4;
+      border-radius: 50%;
+   }
 }
 
 .carousel-slider .indicator span {
@@ -60,6 +67,7 @@
    height: 1em;
    width: 1em;
    border-radius: 50%;
+   
 }
 
 .carousel-slider .indicator.curr-indicator span {

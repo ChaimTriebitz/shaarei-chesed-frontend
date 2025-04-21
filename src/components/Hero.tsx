@@ -19,8 +19,8 @@ export default function Hero({ images }: { images: ImageItem[] }) {
         className="logo"
         src="/logo.svg"
         alt="logo"
-        width={150}
-        height={150}
+        width={50}
+        height={50}
       />
       <div className="hero-content">
         <h2>Luxury Living in Shaarei Chesed</h2>

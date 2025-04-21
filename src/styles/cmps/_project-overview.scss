@@ -1,0 +1,58 @@
+@use '../basics/vars.scss' as *;
+
+.project-overview {
+
+   h3 {
+      color: $c1;
+      font-weight: 900;
+      text-align: center;
+   }
+
+   h4 {
+      color: $c1;
+      text-align: center;
+   }
+
+   .content {
+      background-color: $c2;
+      padding: 2em;
+      align-items: center;
+
+      @media (max-width: $mobile) {
+         padding: 1em;
+      }
+
+      .card {
+         gap: 1em;
+         background: $c4;
+         padding: 1em;
+         border-radius: 20px;
+         box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.5019607843);
+
+         .card-details {
+
+            .item {
+               flex-direction: row;
+               align-items: center;
+
+               span {
+                  font-weight: 700;
+                  color: $c2;
+               }
+
+               h6 {
+                  font-weight: 700;
+                  color: $c5;
+               }
+            }
+
+
+            @media (min-width: $mobile) {
+               flex-direction: row;
+               justify-content: space-between;
+            }
+         }
+
+      }
+   }
+}

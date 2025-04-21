@@ -56,9 +56,14 @@
       z-index: 999;
       width: 150px;
       height: 150px;
+      @media (max-width:$mobile) {
+         width: 75px;
+         height: 75px;
+      }
    }
 
    .hero-content {
+      gap: 1em;
       text-align: center;
       padding: 1rem;
       position: absolute;
