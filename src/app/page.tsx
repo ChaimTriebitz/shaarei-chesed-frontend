@@ -9,47 +9,47 @@ import { ImageItem } from "@/types/images";
 const images: ImageItem[] = [
   {
     id: 1,
-    src: "/1.jpg",
+    src: "/project/1-min.jpg",
     alt: "Luxury Apartment Front View 1 ",
   },
   {
     id: 2,
-    src: "/2.jpg",
+    src: "/project/2-min.jpg",
     alt: "Luxury Apartment Front View 2",
   },
   {
     id: 3,
-    src: "/3.jpg",
+    src: "/project/3-min.jpg",
     alt: "Luxury Apartment Front View 3",
   },
   {
     id: 4,
-    src: "/4.jpg",
+    src: "/project/4-min.jpg",
     alt: "Luxury Apartment Front View 4",
   },
   {
     id: 5,
-    src: "/5.jpg",
+    src: "/project/5-min.jpg",
     alt: "Luxury Apartment Dining Room 1",
   },
   {
     id: 6,
-    src: "/6.jpg",
+    src: "/project/6-min.jpg",
     alt: "Luxury Apartment Dining Room 2",
   },
   {
     id: 7,
-    src: "/7.jpg",
+    src: "/project/7-min.jpg",
     alt: "Luxury Apartment Dining Room 3",
   },
   {
     id: 8,
-    src: "/8.jpg",
+    src: "/project/8-min.jpg",
     alt: "Luxury Apartment Living Room 1",
   },
   {
     id: 9,
-    src: "/9.jpg",
+    src: "/project/9-min.jpg",
     alt: "Luxury Apartment Dining Room 2",
   },
 ];

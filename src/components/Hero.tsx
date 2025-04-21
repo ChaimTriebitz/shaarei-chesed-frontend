@@ -22,6 +22,10 @@ export default function Hero({ images }: { images: ImageItem[] }) {
         alt="logo"
         width={50}
         height={50}
+        priority={true}
+        loading="eager"
+        sizes="(max-width: 600px) 100vw, 90vw"
+        quality={85}
       />
       <div className="hero-content">
         <h2>Luxury Living in Shaarei Chesed</h2>
@@ -70,6 +74,10 @@ export default function Hero({ images }: { images: ImageItem[] }) {
           src={image.src}
           alt={image.alt}
           fill
+          priority={image.id === 1}
+          loading={image.id === 1 ? "eager" : "lazy"}
+          sizes="(max-width: 600px) 100vw, 90vw"
+          quality={85}
         />
       ))}
     </div>
