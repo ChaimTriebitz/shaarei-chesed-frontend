@@ -79,7 +79,7 @@ const ProjectDifferentiator = () => {
             </li>
             <li>
               <strong>Prime Location:</strong> Walking distance to Shuls, parks,
-              and Jerusalem's cultural life
+              and Jerusalem&apos;s cultural life
             </li>
             <li>
               <strong>Investment Potential:</strong> Smart and rewarding

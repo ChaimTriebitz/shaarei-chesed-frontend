@@ -26,7 +26,7 @@ export default function Hero({ images }: { images: ImageItem[] }) {
       <div className="hero-content">
         <h2>Luxury Living in Shaarei Chesed</h2>
         <h4>
-          Exclusive Boutique Residential Development in Jerusalem's Most
+          Exclusive Boutique Residential Development in Jerusalem&apos;s Most
           Sought-After Neighborhood
         </h4>
         <div className="btns">
