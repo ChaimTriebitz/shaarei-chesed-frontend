@@ -6,12 +6,13 @@ import { ImageItem } from "@/types/images";
 
 export default function Hero({ images }: { images: ImageItem[] }) {
   const [currImageIdx, setCurrImageIdx] = useState(0);
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrImageIdx((prev) => (prev + 1) % images.length);
     }, 8000);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [images.length]);
 
   return (
     <div className="hero">
@@ -30,7 +31,7 @@ export default function Hero({ images }: { images: ImageItem[] }) {
         </h4>
         <div className="btns">
           <button
-          className="btn"
+            className="btn"
             onClick={() => {
               document
                 .getElementById("about")
@@ -40,7 +41,7 @@ export default function Hero({ images }: { images: ImageItem[] }) {
             About Project
           </button>
           <button
-          className="btn"
+            className="btn"
             onClick={() => {
               document
                 .getElementById("differentiator")
@@ -50,7 +51,7 @@ export default function Hero({ images }: { images: ImageItem[] }) {
             Why Choose Us
           </button>
           <button
-          className="btn"
+            className="btn"
             onClick={() => {
               document
                 .getElementById("gallery")

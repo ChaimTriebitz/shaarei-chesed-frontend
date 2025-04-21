@@ -1,6 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState, ReactNode, TouchEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  ReactNode,
+  TouchEvent,
+  useCallback,
+} from "react";
 
 interface CarouselProps {
   children: ReactNode[];
@@ -30,18 +37,26 @@ export default function CarouselSlider({
   children,
   autoPlay = true,
 }: CarouselProps) {
-  const [touchPosition, setTouchPosition] = useState<number | null>(null);
   const [slides, setSlides] = useState<HTMLElement[]>([]);
   const [currSlideIdx, setCurrSlideIdx] = useState(0);
+  const [touchPosition, setTouchPosition] = useState<number | null>(null);
   const slidesRef = useRef<HTMLDivElement>(null);
-  const indicatorsRef = useRef<HTMLElement>(null);
+  const indicatorsRef = useRef<HTMLDivElement>(null);
+
+  const handleResize = useCallback(() => {
+    slides.forEach((slide, idx) => {
+      if (slides[0]) {
+        slide.style.left = `${slides[0].getBoundingClientRect().width * idx}px`;
+      }
+    });
+  }, [slides]);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [handleResize]);
 
   useEffect(() => {
     if (children.length === 0 || !slidesRef.current) return;
@@ -57,19 +72,11 @@ export default function CarouselSlider({
   useEffect(() => {
     handleResize();
     if (!slides.length || !autoPlay) return;
-   //  const intervalId = setInterval(() => {
-   //    handleClick(currSlideIdx + 1);
-   //  }, 4000);
-   //  return () => clearInterval(intervalId);
-  }, [slides, currSlideIdx, autoPlay]);
-
-  const handleResize = () => {
-    slides.forEach((slide, idx) => {
-      if (slides[0]) {
-        slide.style.left = `${slides[0].getBoundingClientRect().width * idx}px`;
-      }
-    });
-  };
+    //  const intervalId = setInterval(() => {
+    //    handleClick(currSlideIdx + 1);
+    //  }, 4000);
+    //  return () => clearInterval(intervalId);
+  }, [slides, currSlideIdx, autoPlay, handleResize]);
 
   const handleClick = (idx: number) => {
     if (!slidesRef.current) return;
