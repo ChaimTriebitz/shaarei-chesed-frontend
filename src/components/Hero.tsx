@@ -28,11 +28,11 @@ export default function Hero({ images }: { images: ImageItem[] }) {
         quality={85}
       />
       <div className="hero-content">
-        <h2>Luxury Living in Shaarei Chesed</h2>
-        <h4>
+        <h1>Luxury Living in Shaarei Chesed</h1>
+        <h2>
           Exclusive Boutique Residential Development in Jerusalem&apos;s Most
           Sought-After Neighborhood
-        </h4>
+        </h2>
         <div className="btns">
           <button
             className="btn"
@@ -41,6 +41,7 @@ export default function Hero({ images }: { images: ImageItem[] }) {
                 .getElementById("about")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
+            aria-label="Learn more about the project"
           >
             About Project
           </button>
@@ -51,6 +52,7 @@ export default function Hero({ images }: { images: ImageItem[] }) {
                 .getElementById("differentiator")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
+            aria-label="See why to choose us"
           >
             Why Choose Us
           </button>
@@ -61,6 +63,7 @@ export default function Hero({ images }: { images: ImageItem[] }) {
                 .getElementById("gallery")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
+            aria-label="View project gallery"
           >
             Gallery
           </button>
