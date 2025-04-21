@@ -7,6 +7,7 @@ import {
   ReactNode,
   TouchEvent,
   useCallback,
+  useMemo,
 } from "react";
 
 interface CarouselProps {
@@ -19,7 +20,7 @@ interface SvgIcons {
   arrowRight: ReactNode;
 }
 
-// Temporary SVG icons - replace with your actual icons
+// Memoize SVG icons since they don't change
 const svgs: SvgIcons = {
   arrowLeft: (
     <svg viewBox="0 0 24 24" width="24" height="24">
@@ -40,21 +41,31 @@ export default function CarouselSlider({
   const [slides, setSlides] = useState<HTMLElement[]>([]);
   const [currSlideIdx, setCurrSlideIdx] = useState(0);
   const [touchPosition, setTouchPosition] = useState<number | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const slidesRef = useRef<HTMLDivElement>(null);
   const indicatorsRef = useRef<HTMLDivElement>(null);
 
   const handleResize = useCallback(() => {
-    slides.forEach((slide, idx) => {
-      if (slides[0]) {
-        slide.style.left = `${slides[0].getBoundingClientRect().width * idx}px`;
-      }
+    if (!slides.length) return;
+
+    requestAnimationFrame(() => {
+      slides.forEach((slide, idx) => {
+        if (slides[0]) {
+          slide.style.left = `${
+            slides[0].getBoundingClientRect().width * idx
+          }px`;
+        }
+      });
     });
   }, [slides]);
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    const resizeHandler = () => {
+      handleResize();
+    };
+    window.addEventListener("resize", resizeHandler);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", resizeHandler);
     };
   }, [handleResize]);
 
@@ -65,56 +76,119 @@ export default function CarouselSlider({
 
   useEffect(() => {
     if (!slides.length || !slidesRef.current) return;
-    const currSlide = slides[currSlideIdx];
-    slidesRef.current.style.transform = `translateX(-${currSlide.style.left})`;
+
+    requestAnimationFrame(() => {
+      const currSlide = slides[currSlideIdx];
+      slidesRef.current!.style.transform = `translateX(-${currSlide.style.left})`;
+    });
   }, [currSlideIdx, slides]);
 
   useEffect(() => {
     handleResize();
-    if (!slides.length || !autoPlay) return;
-    //  const intervalId = setInterval(() => {
-    //    handleClick(currSlideIdx + 1);
-    //  }, 4000);
-    //  return () => clearInterval(intervalId);
-  }, [slides, currSlideIdx, autoPlay, handleResize]);
+    if (!slides.length || !autoPlay || isTransitioning) return;
 
-  const handleClick = (idx: number) => {
-    if (!slidesRef.current) return;
+    const intervalId = setInterval(() => {
+      handleClick((currSlideIdx + 1) % slides.length);
+    }, 5000);
 
-    slidesRef.current.classList.add("transition");
-    if (idx === slides.length - 1) {
-      setTimeout(() => {
-        if (!slidesRef.current) return;
-        slidesRef.current.classList.remove("transition");
-        setCurrSlideIdx(0);
-      }, 500);
-    } else if (idx === 0) {
-      setTimeout(() => {
-        if (!slidesRef.current) return;
-        slidesRef.current.classList.remove("transition");
-        setCurrSlideIdx(slides.length - 1);
-      }, 500);
-    }
-    if (idx >= 0 && idx < slides.length) {
-      setCurrSlideIdx(idx);
-    }
-    handleResize();
-  };
+    return () => clearInterval(intervalId);
+  }, [slides, currSlideIdx, autoPlay, handleResize, isTransitioning]);
 
-  const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+  const handleClick = useCallback(
+    (idx: number) => {
+      if (!slidesRef.current || isTransitioning) return;
+
+      setIsTransitioning(true);
+      slidesRef.current.classList.add("transition");
+
+      if (idx === slides.length - 1) {
+        setTimeout(() => {
+          if (!slidesRef.current) return;
+          slidesRef.current.classList.remove("transition");
+          setCurrSlideIdx(0);
+          setIsTransitioning(false);
+        }, 500);
+      } else if (idx === 0) {
+        setTimeout(() => {
+          if (!slidesRef.current) return;
+          slidesRef.current.classList.remove("transition");
+          setCurrSlideIdx(slides.length - 1);
+          setIsTransitioning(false);
+        }, 500);
+      }
+
+      if (idx >= 0 && idx < slides.length) {
+        setCurrSlideIdx(idx);
+      }
+
+      requestAnimationFrame(handleResize);
+    },
+    [slides.length, isTransitioning, handleResize]
+  );
+
+  const handleTouchStart = useCallback((e: TouchEvent<HTMLDivElement>) => {
     const touchDown = e.touches[0].clientX;
     setTouchPosition(touchDown);
-  };
+  }, []);
 
-  const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
-    const touchDown = touchPosition;
-    if (touchDown === null) return;
-    const currentTouch = e.touches[0].clientX;
-    const diff = touchDown - currentTouch;
-    if (diff > 7) handleClick(currSlideIdx + 1);
-    if (diff < -7) handleClick(currSlideIdx - 1);
-    setTouchPosition(null);
-  };
+  const handleTouchMove = useCallback(
+    (e: TouchEvent<HTMLDivElement>) => {
+      const touchDown = touchPosition;
+      if (touchDown === null) return;
+
+      const currentTouch = e.touches[0].clientX;
+      const diff = touchDown - currentTouch;
+
+      if (diff > 7) handleClick((currSlideIdx + 1) % slides.length);
+      if (diff < -7)
+        handleClick(currSlideIdx === 0 ? slides.length - 1 : currSlideIdx - 1);
+
+      setTouchPosition(null);
+    },
+    [touchPosition, currSlideIdx, slides.length, handleClick]
+  );
+
+  const navigationButtons = useMemo(() => {
+    if (slides.length <= 2) return null;
+    return (
+      <>
+        <button
+          onClick={() =>
+            handleClick(
+              currSlideIdx === 0 ? slides.length - 1 : currSlideIdx - 1
+            )
+          }
+        >
+          {svgs.arrowLeft}
+        </button>
+        <button onClick={() => handleClick((currSlideIdx + 1) % slides.length)}>
+          {svgs.arrowRight}
+        </button>
+      </>
+    );
+  }, [slides.length, currSlideIdx, handleClick]);
+
+  const indicators = useMemo(() => {
+    if (slides.length <= 2) return null;
+    return (
+      <nav className="indicators" ref={indicatorsRef}>
+        {children.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => handleClick(index)}
+            className={
+              index === currSlideIdx ||
+              (currSlideIdx === slides.length - 1 && index === 0)
+                ? "indicator curr-indicator"
+                : "indicator"
+            }
+          >
+            <span></span>
+          </button>
+        ))}
+      </nav>
+    );
+  }, [slides.length, currSlideIdx, children, handleClick]);
 
   return (
     <div
@@ -122,11 +196,7 @@ export default function CarouselSlider({
       onTouchMove={handleTouchMove}
       className="carousel-slider"
     >
-      {slides.length > 2 && (
-        <button onClick={() => handleClick(currSlideIdx - 1)}>
-          {svgs.arrowLeft}
-        </button>
-      )}
+      {navigationButtons}
       <div className="slides" ref={slidesRef}>
         {children.map((child, index) => (
           <div key={index} data-index={index} className="slide">
@@ -135,29 +205,7 @@ export default function CarouselSlider({
         ))}
         <div className="slide">{children[0]}</div>
       </div>
-      {slides.length > 2 && (
-        <button onClick={() => handleClick(currSlideIdx + 1)}>
-          {svgs.arrowRight}
-        </button>
-      )}
-      {slides.length > 2 && (
-        <nav className="indicators" ref={indicatorsRef}>
-          {children.map((item, index) => (
-            <button
-              key={index}
-              onClick={() => handleClick(index)}
-              className={
-                index === currSlideIdx ||
-                (currSlideIdx === slides.length - 1 && index === 0)
-                  ? "indicator curr-indicator"
-                  : "indicator"
-              }
-            >
-              <span></span>
-            </button>
-          ))}
-        </nav>
-      )}
+      {indicators}
     </div>
   );
 }
