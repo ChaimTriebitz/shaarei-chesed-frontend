@@ -1,0 +1,25 @@
+@use '../basics/vars.scss' as *;
+
+.home {
+
+   color: $c4; // dark text for contrast
+   background: $c1;
+
+   .content {
+      background: $c2;
+      padding: 2em;
+   }
+
+   h3 {
+      text-align: center;
+      margin: 1em;
+   }
+
+   h4,
+   h5,
+   h6,
+   p {
+      color: $c1;
+   }
+
+}

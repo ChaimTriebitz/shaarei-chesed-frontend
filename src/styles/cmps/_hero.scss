@@ -5,9 +5,7 @@
    min-height: 100vh;
    position: relative;
    overflow: hidden;
-
-
-
+   background: $c2;
 
    &::after {
       content: "";
@@ -26,7 +24,6 @@
       &.active {
          visibility: visible;
          transform: scale(1.05);
-
          opacity: 1;
          animation: fadeIn 0.5s linear;
       }
@@ -56,6 +53,7 @@
       z-index: 999;
       width: 150px;
       height: 150px;
+
       @media (max-width:$mobile) {
          width: 75px;
          height: 75px;
@@ -111,8 +109,8 @@
          &:active {
             background-color: $c4;
          }
-         
-         
+
+
       }
    }
 }

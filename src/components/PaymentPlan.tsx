@@ -2,7 +2,7 @@ import React from "react";
 
 const PaymentPlan = () => {
   return (
-    <section className="payment-plan">
+    <section className="section payment-plan">
       <h3>Payment Plan</h3>
 
       <div className="content">

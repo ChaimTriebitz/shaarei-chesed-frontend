@@ -2,7 +2,7 @@ import React from "react";
 
 const ProjectDifferentiator = () => {
   return (
-    <section className="project-differentiator">
+    <section className="section project-differentiator">
       <h3>Why This Project is Different</h3>
 
       <div className="content">

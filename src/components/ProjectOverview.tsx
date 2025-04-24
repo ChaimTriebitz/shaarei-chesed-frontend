@@ -2,7 +2,7 @@ import React from "react";
 
 const ProjectOverview = () => {
   return (
-    <section className="project-overview">
+    <section className="section project-overview">
       <h3 className="title">Investment Opportunity</h3>
       <div className="content">
         <p>
