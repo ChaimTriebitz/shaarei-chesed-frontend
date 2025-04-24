@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Building base -->
+  <path d="M256 60L456 220V460H56V220L256 60Z" fill="#2c3e50"/>
+  
+  <!-- Windows -->
+  <rect x="116" y="260" width="80" height="80" fill="white"/>
+  <rect x="216" y="260" width="80" height="80" fill="white"/>
+  <rect x="316" y="260" width="80" height="80" fill="white"/>
+  <rect x="116" y="360" width="80" height="80" fill="white"/>
+  <rect x="216" y="360" width="80" height="80" fill="white"/>
+  <rect x="316" y="360" width="80" height="80" fill="white"/>
+  
+  <!-- Door -->
+  <path d="M216 440H296V360C296 349 287 340 276 340H236C225 340 216 349 216 360V440Z" fill="white"/>
+</svg> 
