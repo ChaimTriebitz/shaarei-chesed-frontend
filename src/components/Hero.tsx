@@ -29,7 +29,7 @@ export default function Hero({ images }: { images: ImageItem[] }) {
         src={images[currImageIdx].src}
         alt="logo"
         fill
-        loading="eager"
+        priority={currImageIdx === 0}
       />
       <div className="hero-overlay">
         <Image
@@ -38,7 +38,6 @@ export default function Hero({ images }: { images: ImageItem[] }) {
           alt="logo"
           width={50}
           height={50}
-          quality={90}
         />
         <div className="hero-content">
           <h1>Luxury Living in Shaarei Chesed</h1>
