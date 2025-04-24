@@ -4,7 +4,7 @@ import ProjectDifferentiator from "@/components/ProjectDifferentiator";
 // import ImageGallery from "@/components/ImageGallery";
 import ProjectOverview from "@/components/ProjectOverview";
 import PaymentPlan from "@/components/PaymentPlan";
-import { ImageItem } from "@/types/images";
+// import { ImageItem } from "@/types/images";
 
 // const images: ImageItem[] = [
 //   {
