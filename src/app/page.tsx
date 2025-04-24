@@ -57,7 +57,7 @@ const images: ImageItem[] = [
 export default function Home() {
   return (
     <main className="home">
-      <Hero images={images} />
+      {/* <Hero images={images} /> */}
       <ProjectOverview />
       <ProjectDifferentiator />
       <PaymentPlan />
