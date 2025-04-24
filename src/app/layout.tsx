@@ -58,6 +58,31 @@ export const metadata = {
     statusBarStyle: "default",
     startupImage: ["/apple-icon.png"],
   },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://shaarei-chesed.com/",
+    siteName: "Shaarei Chesed Boutique Living",
+    title: "Shaarei Chesed Boutique Homes",
+    description:
+      "Join an exclusive residential development in Jerusalem's Shaarei Chesed. Boutique apartments, full customization, tax benefits, and a proven track record.",
+    images: [
+      {
+        url: "/web-app-manifest-512x512.png",
+        width: 512,
+        height: 512,
+        alt: "Shaarei Chesed Boutique Living Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shaarei Chesed Boutique Homes",
+    description:
+      "Join an exclusive residential development in Jerusalem's Shaarei Chesed. Boutique apartments, full customization, tax benefits, and a proven track record.",
+    images: ["/web-app-manifest-512x512.png"],
+    creator: "@shaareichesed",
+  },
 };
 
 export default function RootLayout({
