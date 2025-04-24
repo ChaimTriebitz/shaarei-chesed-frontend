@@ -7,15 +7,15 @@ import PaymentPlan from "@/components/PaymentPlan";
 import { ImageItem } from "@/types/images";
 
 // Import images
-import img1 from "@/assets/images/1-min.jpg";
-import img2 from "@/assets/images/2-min.jpg";
-import img3 from "@/assets/images/3-min.jpg";
-import img4 from "@/assets/images/4-min.jpg";
-import img5 from "@/assets/images/5-min.jpg";
-import img6 from "@/assets/images/6-min.jpg";
-import img7 from "@/assets/images/7-min.jpg";
-import img8 from "@/assets/images/8-min.jpg";
-import img9 from "@/assets/images/9-min.jpg";
+import img1 from "@/assets/images/1-min-resized.jpg";
+import img2 from "@/assets/images/2-min-resized.jpg";
+import img3 from "@/assets/images/3-min-resized.jpg";
+import img4 from "@/assets/images/4-min-resized.jpg";
+import img5 from "@/assets/images/5-min-resized.jpg";
+import img6 from "@/assets/images/6-min-resized.jpg";
+import img7 from "@/assets/images/7-min-resized.jpg";
+import img8 from "@/assets/images/8-min-resized.jpg";
+import img9 from "@/assets/images/9-min-resized.jpg";
 
 const images: ImageItem[] = [
   {
