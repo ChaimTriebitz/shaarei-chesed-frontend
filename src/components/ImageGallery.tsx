@@ -2,13 +2,13 @@ import Image from "next/image";
 import CarouselSlider from "./Carousel";
 import { ImageItem } from "@/types/images";
 
-
 export default function ImageGallery({ images }: { images: ImageItem[] }) {
    return (
       <section className="section image-gallery" id="gallery">
          <CarouselSlider>
             {images.map((image, index) => (
                <Image
+                  key={image.id}
                   src={image.src}
                   alt={image.alt}
                   fill
@@ -18,7 +18,7 @@ export default function ImageGallery({ images }: { images: ImageItem[] }) {
                   className="gallery-image"
                   priority={index === 0}
                   style={{ objectFit: "cover" }}
-                  
+
                />
             ))}
          </CarouselSlider>
