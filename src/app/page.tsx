@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import ProjectDifferentiator from "@/components/ProjectDifferentiator";
 import ImageGallery from "@/components/ImageGallery";
 import ProjectOverview from "@/components/ProjectOverview";
-import PaymentPlan from "@/components/PaymentPlan";
+// import PaymentPlan from "@/components/PaymentPlan";
 import { ImageItem } from "@/types/images";
 
 // Import images
@@ -71,7 +71,8 @@ export default function Home() {
       <Hero images={images} />
       <ProjectOverview />
       <ProjectDifferentiator />
-      <PaymentPlan />
+      {/* <PaymentPlan /> */}
+      
       <ImageGallery images={images} />
       <AboutMe />
     </main>

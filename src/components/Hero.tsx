@@ -46,7 +46,7 @@ export default function Hero({ images }: { images: ImageItem[] }) {
             Sought-After Neighborhood
           </h2>
           <div className="btns">
-            <Link href="#about" className="btn">
+            <Link href="#opportunity" className="btn">
               About Project
             </Link>
             <Link href="#differentiator" className="btn">

@@ -1,6 +1,7 @@
 export default function AboutMe() {
   return (
     <section className="section about-me" id="about">
+      {/* <h3 style={{marginBlock:'5em'}}>About Me</h3> */}
       <div className="content">
         <p>
           I&apos;m an attorney with over 20 years of experience specializing in

@@ -2,7 +2,7 @@ import React from "react";
 
 const ProjectOverview = () => {
   return (
-    <section className="section project-overview">
+    <section className="section project-overview" id="opportunity">
       <h3 className="title">Investment Opportunity</h3>
       <div className="content">
         <p>
@@ -17,7 +17,7 @@ const ProjectOverview = () => {
           construction process.
         </p>
 
-        <div className="card">
+        {/* <div className="card">
           <h4>Investment Details</h4>
           <div className="card-details">
             <div className="item">
@@ -33,7 +33,7 @@ const ProjectOverview = () => {
               <h6>12 million NIS</h6>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <p>
           This investment includes full customization options and excellent
